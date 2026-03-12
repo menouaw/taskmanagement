@@ -1,22 +1,90 @@
-# taskmanagement
-Application de gestion de tâches
+# Task Management – Application de gestion de tâches
 
-3- Partie tests et couverture de code
+Application full‑stack (React + Node.js/Express) permettant de gérer des tâches avec authentification, priorités et colonne Kanban (À faire / En cours / Terminé).
 
-Au Début
-Backend – Couverture de code : 0 %
-Aucun test automatisé n’a été implémenté sur l’API (Jest indique “No tests found”). Cela signifie que la totalité du code backend n’est pas couverte par des tests.
+---
 
-J’ai ajouté un premier test automatisé côté backend et un côté frontend pour  l’usage des tests et mesurer la couverture de code.
-Sur le backend, j’ai créé un test Jest avec Supertest qui vérifie que l’endpoint /health répond bien avec un statut 200
-Sur le frontend, j’ai ajouté un test Vitest qui rend le composant App et vérifie que la page de connexion s’affiche correctement quand l’utilisateur n’est pas authentifié.
-Après ces ajouts, j’ai lancé npm run test:coverage dans les dossiers backend et frontend.
-Les résultats de couverture sont les suivants :
+## 1. Stack technique
 
-Backend : Statements ≈ 28,7 %, Branches ≈ 12,2 %, Functions ≈ 5,3 %, Lines ≈ 30,7 %
-Frontend : Statements ≈ 27,4 %, Branches = 50 %, Functions = 25 %, Lines ≈ 27,4 %
+- **Frontend** : React 18, React Router, Vite
+- **Backend** : Node.js, Express, JWT, bcrypt
+- **Tests frontend** : Vitest, React Testing Library, jsdom
+- **Tests backend** : Jest, Supertest
+- **Qualité / CI** :
+  - ESLint (frontend et backend)
+  - GitHub Actions (pipeline CI)
 
-Exemple  de code : const request = require('supertest');
+---
+
+## 2. Lancer le projet en local
+
+### Backend (API)
+
+```bash
+cd backend
+npm install
+npm run dev      # démarrage avec nodemon
+```
+
+API disponible par défaut sur `http://localhost:3001`.
+
+### Frontend (React)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Interface accessible sur `http://localhost:3000` (le frontend proxy les requêtes `/api` vers le backend).
+
+---
+
+## 3. Tests et couverture de code
+
+Au départ, il n’y avait **aucun test automatisé**, donc une couverture de code de **0 %** côté backend et frontend.
+
+J’ai ensuite ajouté :
+
+- **Backend** : un test Jest avec Supertest sur l’endpoint `/health` pour vérifier que l’API répond correctement.
+- **Frontend** : un test Vitest qui rend le composant `App` et vérifie que la page de connexion s’affiche bien lorsqu’un utilisateur n’est pas authentifié.
+
+### Commandes de tests
+
+- **Backend** :
+
+```bash
+cd backend
+npm test           # tests Jest
+npm run test:coverage
+```
+
+- **Frontend** :
+
+```bash
+cd frontend
+npm test           # tests Vitest
+npm run test:coverage
+```
+
+### Résultats de couverture
+
+- **Backend** :
+  - Statements ≈ **28,7 %**
+  - Branches ≈ **12,2 %**
+  - Functions ≈ **5,3 %**
+  - Lines ≈ **30,7 %**
+
+- **Frontend** :
+  - Statements ≈ **27,4 %**
+  - Branches = **50 %**
+  - Functions = **25 %**
+  - Lines ≈ **27,4 %**
+
+### Exemple de test backend (`backend/__tests__/server.test.js`)
+
+```javascript
+const request = require('supertest');
 const app = require('../server');
 
 describe('API health check', () => {
@@ -28,5 +96,31 @@ describe('API health check', () => {
     expect(res.body).toHaveProperty('timestamp');
   });
 });
+```
 
+---
+
+## 4. Pipeline CI/CD (GitHub Actions)
+
+Un workflow GitHub Actions (`.github/workflows/ci.yml`) est configuré pour se lancer :
+
+- à chaque **push** sur `main`
+- à chaque **pull request** vers `main`
+
+Il exécute :
+
+- **Backend** :
+  - `npm ci`
+  - `npm run lint`
+  - `npm run test:coverage`
+- **Frontend** :
+  - `npm ci`
+  - `npm run lint`
+  - `npm run test:coverage`
+
+Cela garantit :
+
+- des **tests automatiques** sur chaque PR
+- une **analyse de code** (ESLint)
+- une **vérification de la couverture de code** en continu
 
