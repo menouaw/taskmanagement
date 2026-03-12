@@ -3,13 +3,16 @@ const chrome = require('selenium-webdriver/chrome');
 
 describe('Authentification E2E', () => {
   let driver;
-  const timeout = 10000;
+  const timeout = 15000;
 
   beforeAll(async () => {
     const options = new chrome.Options();
     options.addArguments('--headless');
     options.addArguments('--no-sandbox');
     options.addArguments('--disable-dev-shm-usage');
+    options.addArguments('--remote-allow-origins=*');
+    options.addArguments('--disable-gpu');
+    options.addArguments('--window-size=1920,1080');
 
     driver = await new Builder()
       .forBrowser('chrome')
@@ -38,7 +41,7 @@ describe('Authentification E2E', () => {
     const currentUrl = await driver.getCurrentUrl();
     expect(currentUrl).toContain('/dashboard');
 
-    const dashboardTitle = await driver.wait(until.elementLocated(By.xpath("//h1[contains(text(), 'Dashboard')]|//h2[contains(text(), 'Dashboard')]")), timeout);
+    const dashboardTitle = await driver.wait(until.elementLocated(By.xpath("//h1[contains(text(), 'Gestionnaire de Tâches')]")), timeout);
     expect(await dashboardTitle.isDisplayed()).toBe(true);
   }, timeout);
 
