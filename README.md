@@ -10,4 +10,23 @@ Aucun test automatisé n’a été implémenté sur l’API (Jest indique “No 
 J’ai ajouté un premier test automatisé côté backend et un côté frontend pour  l’usage des tests et mesurer la couverture de code.
 Sur le backend, j’ai créé un test Jest avec Supertest qui vérifie que l’endpoint /health répond bien avec un statut 200
 Sur le frontend, j’ai ajouté un test Vitest qui rend le composant App et vérifie que la page de connexion s’affiche correctement quand l’utilisateur n’est pas authentifié.
+Après ces ajouts, j’ai lancé npm run test:coverage dans les dossiers backend et frontend.
+Les résultats de couverture sont les suivants :
+
+Backend : Statements ≈ 28,7 %, Branches ≈ 12,2 %, Functions ≈ 5,3 %, Lines ≈ 30,7 %
+Frontend : Statements ≈ 27,4 %, Branches = 50 %, Functions = 25 %, Lines ≈ 27,4 %
+
+Exemple  de code : const request = require('supertest');
+const app = require('../server');
+
+describe('API health check', () => {
+  it('GET /health should return status OK', async () => {
+    const res = await request(app).get('/health');
+
+    expect(res.status).toBe(200);
+    expect(res.body).toHaveProperty('status', 'OK');
+    expect(res.body).toHaveProperty('timestamp');
+  });
+});
+
 
