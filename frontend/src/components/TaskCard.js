@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useTask } from '../contexts/TaskContext';
 
 const TaskCard = ({ task, onEditTask }) => {
@@ -69,6 +70,19 @@ const TaskCard = ({ task, onEditTask }) => {
       </div>
     </div>
   );
+};
+
+TaskCard.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    status: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+    assignedTo: PropTypes.string,
+    createdAt: PropTypes.string
+  }).isRequired,
+  onEditTask: PropTypes.func.isRequired
 };
 
 export default TaskCard;

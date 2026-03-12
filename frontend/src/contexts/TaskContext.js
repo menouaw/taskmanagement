@@ -89,6 +89,7 @@ export const TaskProvider = ({ children }) => {
       fetchTasks();
       fetchUsers();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token]);
 
   const value = {
