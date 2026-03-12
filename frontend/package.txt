@@ -1,0 +1,2 @@
+"lint": "eslint src --ext .js,.jsx",
+"lint:fix": "eslint src --ext .js,.jsx --fix"
