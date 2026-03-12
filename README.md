@@ -1,10 +1,9 @@
-# Task Management – Application de gestion de tâches
+# projet de git
 
-Application full‑stack (React + Node.js/Express) permettant de gérer des tâches avec authentification, priorités et colonne Kanban (À faire / En cours / Terminé).
-
+projet avec youssef el diba, mathis et ménoua. on a mis les captures d'écrans en bas!!!! 
 ---
 
-## 1. Stack technique
+## 1. couche technique
 
 - **Frontend** : React 18, React Router, Vite
 - **Backend** : Node.js, Express, JWT, bcrypt
@@ -123,4 +122,13 @@ Cela garantit :
 - des **tests automatiques** sur chaque PR
 - une **analyse de code** (ESLint)
 - une **vérification de la couverture de code** en continu
+<img width="1920" height="883" alt="image" src="https://github.com/user-attachments/assets/ff9b1a03-775b-4b12-9009-1cb109cc1db7" />
+<img width="1919" height="946" alt="image" src="https://github.com/user-attachments/assets/cd547282-9f96-4ac7-9ed6-41d95b6f65f3" />
+<img width="1062" height="549" alt="image" src="https://github.com/user-attachments/assets/9f0d46ed-acf3-4582-ba46-3bd5d0a6199e" />
+<img width="1913" height="946" alt="image" src="https://github.com/user-attachments/assets/68e82807-f32b-4bd7-8c96-f9608113fe98" />
+<img width="1558" height="552" alt="image" src="https://github.com/user-attachments/assets/413c62d6-373b-4c35-a2a4-5628e7d5516b" />
+<img width="1913" height="946" alt="image" src="https://github.com/user-attachments/assets/5bd9d448-0fff-4ce3-94f2-630d02ca992b" />
+<img width="899" height="289" alt="image" src="https://github.com/user-attachments/assets/c4ffdd22-eb76-45f6-b361-c0a219eb6f66" />
+<img width="905" height="156" alt="image" src="https://github.com/user-attachments/assets/4e9ee651-5b34-4dd3-9e38-a8322f6aefa8" />
+<img width="1868" height="674" alt="image" src="https://github.com/user-attachments/assets/f37c88a7-901f-4229-a85e-216dcce3c41a" />
 
